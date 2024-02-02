@@ -1,0 +1,31 @@
+import { Component } from '@angular/core';
+import { Country } from '../../interfaces/country.interface';
+import { CountryService } from '../../services/country.service';
+
+@Component({
+  selector: 'search-by-capital-page',
+  templateUrl: './by-capital-page.component.html',
+  styles: [
+  ]
+})
+export class ByCapitalPageComponent {
+term : string ='';
+error: boolean = false;
+public countries: Country[]=[];
+public isLoading: boolean = false;
+
+constructor(private countryService: CountryService ){
+  // private countryService: CountryService
+}
+searchByCapital( term: string): void{
+  this.error= false;
+  this.term = term;
+  this.isLoading = true;
+
+  this.countryService.searchCapital(term)
+  .subscribe(countries => {
+    this.countries = countries;
+    this.isLoading = false;
+  });
+}
+}

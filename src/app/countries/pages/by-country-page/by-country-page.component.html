@@ -1,0 +1,22 @@
+<h2>Por País</h2>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <!-- SearchBox -->
+    <shared-search-box
+       (onValue)="searchByCountry($event)"
+      placeholder="Buscar por Pais!!!! 🧮  "></shared-search-box>
+  </div>
+</div>
+
+<hr>
+<div *ngIf="error" class="alert alert-danger">
+  No se encontro nada con el Termino: {{term}}
+</div>
+
+<!-- <div *ngIf="countries.length > 0" class="row"> -->
+  <div class="col">
+    <countries-table [countries] ="countries" ></countries-table>
+  </div>
+<!-- </div> -->

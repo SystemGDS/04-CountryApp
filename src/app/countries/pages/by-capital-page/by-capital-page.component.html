@@ -1,0 +1,25 @@
+<h2>Por Capital</h2>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <!-- SearchBox -->
+    <!-- (onValue)="searchByCapital($event)" -->
+    <shared-search-box
+      (onDebounce)="searchByCapital($event)"
+      placeholder="Buscar por Capital!!!! 🧮  "></shared-search-box>
+  </div>
+</div>
+
+<hr>
+<div *ngIf="error" class="alert alert-danger">
+  No se encontro nada con el Termino: {{term}}
+</div>
+
+<!-- <div *ngIf="countries.length > 0" class="row"> -->
+  <div class="col">
+    <hr>
+    <shared-loading-spinner *ngIf="isLoading"></shared-loading-spinner>
+    <countries-table [countries] ="countries" ></countries-table>
+  </div>
+<!-- </div> -->
