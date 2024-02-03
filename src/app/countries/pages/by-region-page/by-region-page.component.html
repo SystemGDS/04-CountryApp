@@ -1,10 +1,10 @@
 <h3>Buscar por Region: <small>{{ regionActivate | titlecase}}</small></h3>
 <hr>
 
-<h5>Seleccionar Region</h5>
+<h5 class="text-center text-info">Seleccionar Region</h5>
 
 <div class="row">
-  <div class="col">
+  <div class="col text-center">
     <!-- [class.btn-primary]="region === regionActivate"
     [ngClass]="
             {
@@ -12,18 +12,25 @@
               'btn-outline-primary': regionActivate !== region
             }
             " -->
-    <button *ngFor="let region of regiones"
-            [class]="getClassCSS(region)"
+            <!-- [class]="getClassCSS(region)" -->
+    <button *ngFor="let region of regions"
+            class="btn mx-2"
+            [ngClass]="{'btn-primary': regionActivate === region,
+            'btn-outline-primary': regionActivate !== region}"
             (click) = "activeRegion(region)"
     >
-      {{ region | titlecase }}
+      {{ region }}
     </button>
+    <hr>
   </div>
 </div>
+<!--
+  <div *ngIf="error" class="alert alert-danger">
+    No se encontro nada con el Termino: {{term}}
+  </div> -->
 
-<hr>
-<div *ngIf="countries.length > 0" class="row">
   <div class="col">
-    <countries-table [countries]="countries"></countries-table>
+    <shared-loading-spinner *ngIf="isLoading"></shared-loading-spinner>
+    <countries-table [countries] ="countries" ></countries-table>
   </div>
-</div>
+

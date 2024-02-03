@@ -15,6 +15,9 @@ export class SearchBoxComponent implements OnInit, OnDestroy{
   @Input()
   public placeholder: string='';
 
+  @Input()
+  public initialValue: string = '';
+
   @Output()
   public onValue = new EventEmitter<string>();
 
@@ -24,7 +27,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy{
     // throw new Error('Method not implemented.');
     this.debouncerSuscription = this.debouncer
     .pipe(
-      debounceTime(300)
+      debounceTime(500)
       )
       .subscribe(value => {
         this.onDebounce.emit(value);
